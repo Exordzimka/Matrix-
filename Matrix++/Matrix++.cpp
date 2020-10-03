@@ -3,7 +3,7 @@
 #include <chrono>
 using namespace std;
 
-#define N 1000
+#define N 10000
 
 int matrix1[N][N];
 int matrix2[N][N];
@@ -26,9 +26,10 @@ void SingleThreadMultiplication()
 
 void MultiThreadMultiplication()
 {
+    #pragma omp parallel for private(i,j,k) shared(matrix1, matrix2, matrixOfMulti)
     for (int i = 0; i < N; i++)
     {
-        #pragma omp parallel for private(j)
+        
         for (int j = 0; j < N; j++)
         {
             int summ = 0;
